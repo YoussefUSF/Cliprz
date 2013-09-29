@@ -12,10 +12,23 @@
  */
 
 return [
+    // Singleton abstract class
+    'Cliprz\\Singleton\\Singleton'                                => CLIPRZPATH.'Singleton/Singleton.php',
+
+    // Filesystem class
+    'Cliprz\\Filesystem\\Filesystem'                              => CLIPRZPATH.'Filesystem/Filesystem.php',
+
+    // Config classes and interfaces
+    'Cliprz\\Config\\Config'                                      => CLIPRZPATH.'Config/Config.php',
+
+    // Security classes
+    'Cliprz\\Security\\Security'                                  => CLIPRZPATH.'Security/Security.php',
+
     // HTTP classes and interfaces
     'Cliprz\\HTTP\\Exceptions\\CannotAccessToTheRequest'          => CLIPRZPATH.'HTTP/Exceptions/CannotAccessToTheRequest.php',
     'Cliprz\\HTTP\\URI'                                           => CLIPRZPATH.'HTTP/URI.php',
     'Cliprz\\HTTP\\Request'                                       => CLIPRZPATH.'HTTP/Request.php',
+    'Cliprz\\HTTP\\Response'                                      => CLIPRZPATH.'HTTP/Response.php',
 
     // Router classes and interfaces
     'Cliprz\\Router\\Exceptions\\InvalidRoutingType'              => CLIPRZPATH.'Router/Exceptions/InvalidRoutingType.php',

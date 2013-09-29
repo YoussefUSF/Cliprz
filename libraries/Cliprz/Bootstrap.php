@@ -55,7 +55,19 @@ Autoload::addMaps(include(CLIPRZPATH.'Loader/Maps/Classes.php'));
 // register Cliprz\Loader\Autoload class in SPL stack
 Autoload::register();
 
+// Namespaces to alias
 Autoload::namespaceAlias('Cliprz\\MVC\View\\View');
+Autoload::namespaceAlias('Cliprz\\Filesystem\\Filesystem');
+
+// Use Security
+use Cliprz\Security\Security;
+$__SECURITY = new Security();
+
+// Use config
+use Cliprz\Config\Config;
+
+Config::preparing(APPPATH.'Config/Config.php');
+#Cliprz\pre_print_r(Config::dump());
 
 // Router
 use Cliprz\Router\Exceptions\ProcessorException;
@@ -63,7 +75,7 @@ use Cliprz\Router\Router;
 
 Router::initialization('FREE');
 
-if (is_file(APPPATH.'Config/Router.php')) {
+if (Filesystem::getInstance()->isFile(APPPATH.'Config/Router.php')) {
     include (APPPATH.'Config/Router.php');
 } else {
     exit('Cannot access to website, Router.php not found.');
@@ -76,9 +88,11 @@ try {
 }
 
 // Test compiling
+/*
 use Cliprz\MVC\View\Engines\Compiler\Compiler;
 $c = new Compiler();
 $c->save(APPPATH.'Cache/compile.php');
+*/
 
 // un register Cliprz\Loader\Autoload from SPL stack
 Autoload::unRegister();

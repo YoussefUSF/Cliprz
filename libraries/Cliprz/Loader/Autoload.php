@@ -1,9 +1,7 @@
 <?php
 
 /**
- * Cliprz framework
- *
- * An open source application development framework for PHP 5.4.0 or newer
+ * Part of the Cliprz framework
  *
  * @package    Cliprz
  * @author     Yousef Ismaeil <cliprz@gmail.com>

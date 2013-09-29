@@ -4,6 +4,7 @@
     "description": "The Cliprz framework",
     "keywords": ["framework","cliprz","mvc","hmvc"],
     "homepage": "http://www.cliprz.org",
+	"version": "1.0.0",
     "license": "MIT",
     "authors": [
         {
@@ -11,12 +12,11 @@
             "email": "cliprz@gmail.com"
         }
     ],
-    "require": {
+    "require-dev": {
         "php": ">=5.4.0",
-        "phpunit/phpunit": "3.8.*@dev"
+        "phpunit/phpunit": "3.7.*"
     },
     "config": {
         "vendor-dir": "libraries/Vendor"
-    },
-    "minimum-stability": "dev"
+    }
 }

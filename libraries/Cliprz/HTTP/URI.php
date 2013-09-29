@@ -4,11 +4,12 @@
  * Part of the Cliprz framework
  *
  * @package    Cliprz
- * @author     Yousef Ismaeil <cliprz@gmail.com>
+ * @author     Codeigniter
  * @copyright  Copyright (c) 2013 - 2014, Cliprz Developers team
  * @license    MIT
  * @link       http://www.cliprz.org
  * @version    1.0.0
+ * @note       function from Codeigniter we rewrite function in class to use it in our framework
  */
 
 namespace Cliprz\HTTP;
@@ -42,15 +43,15 @@ class URI {
         } else if (strpos($requestURI,dirname($_SERVER['SCRIPT_NAME'])) === 0) {
             $requestURI = mb_substr($requestURI,mb_strlen(dirname($_SERVER['SCRIPT_NAME'])));
         }
-        /** fix query string */
+        // fix query string
         $requestURI = $this->fixQueryString($requestURI);
-        /** if request URI equal / or empty return to null value */
+        // if request URI equal / or empty return to null value
         if ($requestURI == '/' || empty($requestURI)) {
             return '/';
         }
-        /** parse url */
+        // parse url
         $requestURI = parse_url($requestURI,PHP_URL_PATH);
-        /** fix slashes */
+        // fix slashes
         $requestURI = str_replace(['//','../','\\'],'/',$requestURI);
         $requestURI = trim($requestURI,'/');
         return (string) $requestURI;

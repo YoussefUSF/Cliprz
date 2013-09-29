@@ -5,16 +5,19 @@
 </head>
 <body>
 
-{require: ../../index.php}
+{require:index.php}
 
-{anyVariable}
+{x}
+
+{trim}   ok   {/trim}
 
 {php}
 $x = 1;
-    echo 'Negix';
-    if ($x == 'one') {
-        echo 'ok';
-    }
+if ($x == 1) {
+    echo 'One';
+} else {
+    echo 'not one';
+}
 {/php}
 
 </body>

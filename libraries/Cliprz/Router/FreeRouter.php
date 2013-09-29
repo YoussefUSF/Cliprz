@@ -16,6 +16,7 @@ namespace Cliprz\Router;
 use Cliprz\HTTP\URI;
 use Cliprz\Router\Exceptions\ProcessorException;
 use Cliprz\HTTP\Exceptions\CannotAccessToTheRequest;
+use Cliprz\HTTP\Response;
 
 class FreeRouter implements RouterInterface {
 
@@ -69,6 +70,14 @@ class FreeRouter implements RouterInterface {
     private $URI;
 
     /**
+     * Response class
+     *
+     * @var object
+     * @access private
+     */
+    private $Response;
+
+    /**
      * __CLASS__ constructor
      *
      * @access public
@@ -79,6 +88,7 @@ class FreeRouter implements RouterInterface {
         } catch (CannotAccessToTheRequest $e) {
             exit($e->getMessage());
         }
+        $this->Response = new Response();
         $this->map = $this->map($this->URI->requestURI());
     }
 
@@ -137,7 +147,7 @@ class FreeRouter implements RouterInterface {
                 if ($rule['type'] == $_SERVER["REQUEST_METHOD"]) {
                     // If rule use redirect go to redirecting page
                     if (false != $rule['redirect']) {
-                        $this->redirect($rule['redirect']);
+                        $this->Response->redirect($rule['redirect']);
                     } else {
                         // Set controller path
                         $controllerPath = (false != $rule['path']) ? $rule['path'] : '';
@@ -242,22 +252,6 @@ class FreeRouter implements RouterInterface {
      */
     private function getParameters (Array $parameters) {
         return $this->setParameters($parameters);
-    }
-
-    /**
-     * Redirecting
-     *
-     * @param string Redirecting page as default null index.php
-     * @access public
-     */
-    public function redirect ($page=null) {
-        header("HTTP/1.1 301 Moved Permanently");
-        if (is_null($page)) {
-            header("Location: index.php");
-        } else {
-            header("Location: ".$page);
-        }
-        exit();
     }
 
 }

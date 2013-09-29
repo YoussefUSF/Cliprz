@@ -5,17 +5,20 @@
 </head>
 <body>
 
-<?php require('../../index.php'); ?>
+<?php require('index.php'); ?>
 
-<?php echo ((isset($anyVariable)) ? $anyVariable : 'invalid {anyVariable} variable'); ?>
+<?php echo ((isset($x)) ? $x : 'invalid {x} variable'); ?>
+
+ok
 
 <?php
 
 $x = 1;
-    echo 'Negix';
-    if ($x == 'one') {
-        echo 'ok';
-    }
+if ($x == 1) {
+    echo 'One';
+} else {
+    echo 'not one';
+}
 
 ?>
 
