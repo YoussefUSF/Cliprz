@@ -14,6 +14,7 @@
 namespace Cliprz\Router;
 
 use Cliprz\Router\Exceptions\InvalidRoutingType;
+use Cliprz\Config\Config;
 
 class Router {
 
@@ -39,10 +40,10 @@ class Router {
      *
      * @access public
      */
-    public static function initialization ($routingType) {
+    public static function initialization () {
         static::$type = new RouterFactory();
         try {
-            static::$router = static::$type->create($routingType);
+            static::$router = static::$type->create(Config::get('ROUTER_ENGINE'));
         } catch (InvalidRoutingType $e) {
             exit($e->getMessage());
         }

@@ -58,22 +58,25 @@ Autoload::register();
 // Namespaces to alias
 Autoload::namespaceAlias('Cliprz\\MVC\View\\View');
 Autoload::namespaceAlias('Cliprz\\Filesystem\\Filesystem');
+Autoload::namespaceAlias('Cliprz\\Config\\Config');
+Autoload::namespaceAlias('Cliprz\\HTTP\\HTTP');
+
+Config::preparing(APPPATH.'Config/Config.php');
+Config::preparing(APPPATH.'Config/Error.php');
+#Cliprz\pre_print_r(Config::dump());
+
+use Cliprz\Error\Error;
+Error::errorsLog();
 
 // Use Security
 use Cliprz\Security\Security;
 $__SECURITY = new Security();
 
-// Use config
-use Cliprz\Config\Config;
-
-Config::preparing(APPPATH.'Config/Config.php');
-#Cliprz\pre_print_r(Config::dump());
-
 // Router
 use Cliprz\Router\Exceptions\ProcessorException;
 use Cliprz\Router\Router;
 
-Router::initialization('FREE');
+Router::initialization();
 
 if (Filesystem::getInstance()->isFile(APPPATH.'Config/Router.php')) {
     include (APPPATH.'Config/Router.php');

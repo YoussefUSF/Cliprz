@@ -107,6 +107,11 @@ class Response {
         return;
     }
 
+    /**
+     * Get headers
+     *
+     * @access public
+     */
     public function getHeader ($name=null) {
         if ($name != null && array_key_exists($name,$this->headers)) {
             return $this->headers[$name];
@@ -114,7 +119,19 @@ class Response {
         return $this->headers;
     }
 
-
+    /**
+     * Set a first line of header (status header)
+     *
+     * @access public
+     */
+    public function statusHeader ($status=200,$protocol=1.1) {
+        // Send fastCGI headers
+        if (!empty($_SERVER['FCGI_SERVER_VERSION'])) {
+            header("Status: {$status} {$this->statuses[$status]}");
+        } else {
+            header("{$this->protocol[$protocol]} {$status} {$this->statuses[$status]}");
+        }
+    }
 
     /**
      * Redirecting
@@ -122,14 +139,12 @@ class Response {
      * @param string Redirecting page as default null index.php
      * @access public
      */
-    public function redirect ($page=null) {
-        header("HTTP/1.1 301 Moved Permanently");
-        if (is_null($page)) {
-            header("Location: index.php");
-        } else {
-            header("Location: ".$page);
+    public function redirect ($url,$status=301) {
+        $this->statusHeader($status);
+        if (isset($url)) {
+            header("Location: {$url}");
         }
-        exit();
+        #exit();
     }
 
 }

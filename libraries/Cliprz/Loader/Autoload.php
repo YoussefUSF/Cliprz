@@ -25,7 +25,7 @@ final class Autoload {
      *
      * @const string
      */
-    #const CNS = 'Cliprz\\'; // Only in Cliprz framework
+    const CNS = 'Cliprz\\'; // Only in Cliprz framework
 
     /**
      * Namespace separator

@@ -1,7 +1,7 @@
 {
     "name": "cliprz/cliprz",
     "type": "library",
-    "description": "The Cliprz framework",
+    "description": "The Cliprz framework, easy, simple, secure and tiny.",
     "keywords": ["framework","cliprz","mvc","hmvc"],
     "homepage": "http://www.cliprz.org",
 	"version": "1.0.0",

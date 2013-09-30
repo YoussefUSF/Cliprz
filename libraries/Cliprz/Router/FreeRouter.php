@@ -14,9 +14,11 @@
 namespace Cliprz\Router;
 
 use Cliprz\HTTP\URI;
+use Cliprz\HTTP\Response;
+use Cliprz\HTTP\Request;
+use Cliprz\Error\Error;
 use Cliprz\Router\Exceptions\ProcessorException;
 use Cliprz\HTTP\Exceptions\CannotAccessToTheRequest;
-use Cliprz\HTTP\Response;
 
 class FreeRouter implements RouterInterface {
 
@@ -192,7 +194,7 @@ class FreeRouter implements RouterInterface {
         }
 
         if (!$isMatched) {
-            exit('<h1>404</h1>');
+            Error::show('404');
         }
     }
 
@@ -205,7 +207,7 @@ class FreeRouter implements RouterInterface {
      */
     public function index ($index) {
         if ($this->URI->requestURI() == '/' || $this->URI->requestURI() == '') {
-            $this->redirect($index);
+            $this->Response->redirect($index);
         }
     }
 
